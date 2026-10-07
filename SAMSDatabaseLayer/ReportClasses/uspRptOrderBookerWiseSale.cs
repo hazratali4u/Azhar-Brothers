@@ -1,0 +1,429 @@
+﻿using SAMSCommon.Classes;
+using SAMSDataAccessLayer.Classes;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Text;
+
+namespace SAMSDatabaseLayer.ReportClasses
+{
+ public class uspRptOrderBookerWiseSale
+    {
+        #region Private Members
+        private string sp_Name = " RptOrderBookerWiseSale";
+        private IDbConnection m_connection;
+        private IDbTransaction m_transaction;
+
+
+        private int m_distributor_id;
+        private int m_principal_id;
+        private string m_Company_Id;
+        private int m_UOM_ID;
+        private int m_OrderBooker_ID;
+        private int m_USER_ID;
+        private int m_PRICE_TYPE;
+        private DateTime m_DateFrom;
+        private DateTime m_dateto;
+        #endregion
+
+
+        #region Public Properties
+        public int distributor_id
+        {
+            set
+            {
+                m_distributor_id = value;
+            }
+            get
+            {
+                return m_distributor_id;
+            }
+        }
+
+        public int ORDERBOOKER_ID
+        {
+            set
+            {
+                m_OrderBooker_ID = value;
+            }
+            get
+            {
+                return m_OrderBooker_ID;
+            }
+        }
+        public int PRINCIPAL_ID
+        {
+            set
+            {
+                m_principal_id = value;
+            }
+            get
+            {
+                return m_principal_id;
+            }
+        }
+
+
+        public string Company_Id
+        {
+            set
+            {
+                m_Company_Id = value;
+            }
+            get
+            {
+                return m_Company_Id;
+            }
+        }
+
+
+        public int UOM_ID
+        {
+            set
+            {
+                m_UOM_ID = value;
+            }
+            get
+            {
+                return m_UOM_ID;
+            }
+        }
+
+
+        public int USER_ID
+        {
+            set
+            {
+                m_USER_ID = value;
+            }
+            get
+            {
+                return m_USER_ID;
+            }
+        }
+
+        public int PRICE_TYPE
+        {
+            set { m_PRICE_TYPE = value; }
+            get { return m_PRICE_TYPE; }
+        }
+
+        public DateTime DateFrom
+        {
+            set
+            {
+                m_DateFrom = value;
+            }
+            get
+            {
+                return m_DateFrom;
+            }
+        }
+
+
+        public DateTime dateto
+        {
+            set
+            {
+                m_dateto = value;
+            }
+            get
+            {
+                return m_dateto;
+            }
+        }
+
+
+
+
+        public IDbConnection Connection
+        {
+            set
+            {
+                m_connection = value;
+            }
+            get
+            {
+                return m_connection;
+            }
+        }
+        public IDbTransaction Transaction
+        {
+            set
+            {
+                m_transaction = value;
+            }
+            get
+            {
+                return m_transaction;
+            }
+        }
+        #endregion
+
+
+        #region Constructor
+        public uspRptOrderBookerWiseSale()
+        {
+            m_distributor_id = Constants.IntNullValue;
+            m_principal_id = Constants.IntNullValue;
+            m_Company_Id = null;
+            m_UOM_ID = Constants.IntNullValue;
+            m_OrderBooker_ID = Constants.IntNullValue;
+            m_USER_ID = Constants.IntNullValue;
+            m_DateFrom = Constants.DateNullValue;
+            m_dateto = Constants.DateNullValue;
+            m_PRICE_TYPE = Constants.IntNullValue;
+        }
+        #endregion
+
+        #region public Methods
+        public bool ExecuteQuery()
+        {
+            try
+            {
+                IDbCommand cmd = ProviderFactory.GetCommand(EnumProviders.SQLClient);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "RptOrderBookerWiseSale";
+                cmd.Connection = m_connection;
+                if (m_transaction != null)
+                {
+                    cmd.Transaction = m_transaction;
+                }
+                GetParameterCollection(ref cmd);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+
+
+            }
+        }
+
+
+        public IDataReader ExecuteReader()
+        {
+            try
+            {
+                IDbCommand command = ProviderFactory.GetCommand(EnumProviders.SQLClient);
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "RptOrderBookerWiseSale";
+                command.Connection = m_connection;
+                if (m_transaction != null)
+                {
+                    command.Transaction = m_transaction;
+                }
+                GetParameterCollection(ref command);
+                IDataReader dr = command.ExecuteReader();
+                return dr;
+            }
+            catch (Exception exp)
+            {
+                throw exp;
+            }
+            finally
+            {
+            }
+        }
+
+
+        public DataTable ExecuteTable()
+        {
+            try
+            {
+                IDbCommand command = ProviderFactory.GetCommand(EnumProviders.SQLClient);
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "RptOrderBookerWiseSale";
+                command.Connection = m_connection;
+                command.CommandTimeout = 0;
+                if (m_transaction != null)
+                {
+                    command.Transaction = m_transaction;
+                }
+                GetParameterCollection(ref command);
+                IDbDataAdapter da = ProviderFactory.GetAdapter(EnumProviders.SQLClient);
+                da.SelectCommand = command;
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                return ds.Tables[0];
+            }
+            catch (Exception exp)
+            {
+                throw exp;
+            }
+            finally
+            {
+
+
+            }
+        }
+
+
+        public string ExecuteScalar()
+        {
+            try
+            {
+                IDbCommand command = ProviderFactory.GetCommand(EnumProviders.SQLClient);
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "RptOrderBookerWiseSale";
+                command.Connection = m_connection;
+                if (m_transaction != null)
+                {
+                    command.Transaction = m_transaction;
+                }
+                GetParameterCollection(ref command);
+                object o;
+                o = command.ExecuteScalar();
+
+
+                return o.ToString();
+            }
+            catch (Exception exp)
+            {
+                throw exp;
+            }
+            finally
+            {
+            }
+        }
+
+
+        public void FirstReader(IDataReader dr)
+        {
+            if (dr.Read())
+            {
+                m_distributor_id = Convert.ToInt32(dr["distributor_id"]);
+                m_principal_id = Convert.ToInt32(dr["principal_id"].ToString());
+                m_Company_Id = dr["Company_Id"].ToString();
+                m_UOM_ID = Convert.ToInt32(dr["UOM_ID"]);
+                m_OrderBooker_ID = Convert.ToInt32(dr["OrderBooker_ID"]);
+                m_USER_ID = Convert.ToInt32(dr["USER_ID"]);
+                m_DateFrom = Convert.ToDateTime(dr["DateFrom"]);
+                m_dateto = Convert.ToDateTime(dr["dateto"]);
+            }
+        }
+
+
+        public void GetParameterCollection(ref IDbCommand cmd)
+        {
+            IDataParameterCollection pparams = cmd.Parameters;
+            IDataParameter parameter;
+            parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            parameter.ParameterName = "@DISTRIBUTOR_ID";
+            parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.Int);
+            if (m_distributor_id == Constants.IntNullValue)
+            {
+                parameter.Value = DBNull.Value;
+            }
+            else
+            {
+                parameter.Value = m_distributor_id;
+            }
+            pparams.Add(parameter);
+
+
+            parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            parameter.ParameterName = "@PRINCIPAL_ID";
+            parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.VarChar);
+            if (m_principal_id == null)
+            {
+                parameter.Value = DBNull.Value;
+            }
+            else
+            {
+                parameter.Value = m_principal_id;
+            }
+            pparams.Add(parameter);
+
+
+            //parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            //parameter.ParameterName = "@Company_Id";
+            //parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.VarChar);
+            //if (m_Company_Id == null)
+            //{
+            //    parameter.Value = DBNull.Value;
+            //}
+            //else
+            //{
+            //    parameter.Value = m_Company_Id;
+            //}
+            //pparams.Add(parameter);
+
+
+            parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            parameter.ParameterName = "@ORDERBOOKER_ID";
+            parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.Int);
+            if (m_OrderBooker_ID == Constants.IntNullValue)
+            {
+                parameter.Value = DBNull.Value;
+            }
+            else
+            {
+                parameter.Value = m_OrderBooker_ID;
+            }
+            pparams.Add(parameter);
+
+
+            //parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            //parameter.ParameterName = "@USER_ID";
+            //parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.Int);
+            //if (m_USER_ID == Constants.IntNullValue)
+            //{
+            //    parameter.Value = DBNull.Value;
+            //}
+            //else
+            //{
+            //    parameter.Value = m_USER_ID;
+            //}
+            //pparams.Add(parameter);
+
+            //parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            //parameter.ParameterName = "@PRICE_TYPE";
+            //parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.Int);
+            //if (m_PRICE_TYPE == Constants.IntNullValue)
+            //{
+            //    parameter.Value = DBNull.Value;
+            //}
+            //else
+            //{
+            //    parameter.Value = m_PRICE_TYPE;
+            //}
+            //pparams.Add(parameter);
+
+
+            parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            parameter.ParameterName = "@FROMDATE";
+            parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.DateTime);
+            if (m_DateFrom == Constants.DateNullValue)
+            {
+                parameter.Value = DBNull.Value;
+            }
+            else
+            {
+                parameter.Value = m_DateFrom;
+            }
+            pparams.Add(parameter);
+
+
+            parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            parameter.ParameterName = "@TODATE";
+            parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.DateTime);
+            if (m_dateto == Constants.DateNullValue)
+            {
+                parameter.Value = DBNull.Value;
+            }
+            else
+            {
+                parameter.Value = m_dateto;
+            }
+            pparams.Add(parameter);
+
+
+        }
+        #endregion
+    }
+}

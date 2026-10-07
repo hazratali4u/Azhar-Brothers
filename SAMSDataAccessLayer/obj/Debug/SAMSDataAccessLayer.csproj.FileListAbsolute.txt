@@ -1,0 +1,8 @@
+D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSDataAccessLayer\bin\Debug\SAMSDataAccessLayer.dll
+D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSDataAccessLayer\bin\Debug\SAMSDataAccessLayer.pdb
+D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSDataAccessLayer\bin\Debug\SAMSCommon.dll
+D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSDataAccessLayer\bin\Debug\FTP.dll
+D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSDataAccessLayer\bin\Debug\SAMSCommon.pdb
+D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSDataAccessLayer\obj\Debug\SAMSDataAccessLayer.csprojResolveAssemblyReference.cache
+D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSDataAccessLayer\obj\Debug\SAMSDataAccessLayer.dll
+D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSDataAccessLayer\obj\Debug\SAMSDataAccessLayer.pdb
