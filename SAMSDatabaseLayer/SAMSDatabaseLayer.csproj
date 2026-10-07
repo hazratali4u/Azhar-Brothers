@@ -968,6 +968,7 @@
     <Compile Include="ReportClasses\RptSkuWiseCustomerSale.cs" />
     <Compile Include="ReportClasses\spSelectVoucherVendor.cs" />
     <Compile Include="ReportClasses\uspDamageExpirySales.cs" />
+    <Compile Include="ReportClasses\UspDocumentPrintingRollBack.cs" />
     <Compile Include="ReportClasses\uspGetCategoryWisePurchase.cs" />
     <Compile Include="ReportClasses\uspGetCustomerLastPurchase.cs" />
     <Compile Include="ReportClasses\uspGetDMReturnStatement.cs" />
@@ -1049,6 +1050,7 @@
     <Compile Include="ReportClasses\UspPrintSaleAnalysisSummary.cs" />
     <Compile Include="ReportClasses\UspPrintSaleAnalysisSummaryPR.cs" />
     <Compile Include="ReportClasses\UspPrintSaleForceDSR.cs" />
+    <Compile Include="ReportClasses\uspPrintSALE_ORDER_PROMOTIONRollBack.cs" />
     <Compile Include="ReportClasses\uspPrintSALE_ORDER_PROMOTION.cs" />
     <Compile Include="ReportClasses\UspPrintTrialBalance.cs" />
     <Compile Include="ReportClasses\UspRolemanagementDetail.cs" />

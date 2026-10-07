@@ -10,7 +10,7 @@ using CrystalDecisions.CrystalReports.Engine;
 /// <summary>
 /// Form For Print Sale Document Report
 /// </summary>
-public partial class Forms_frmDocumentPrinting : System.Web.UI.Page
+public partial class Forms_frmRolledbackDocumentPrinting : System.Web.UI.Page
 {
     /// <summary>
     /// Page_Load Function
@@ -162,27 +162,16 @@ public partial class Forms_frmDocumentPrinting : System.Web.UI.Page
         RptSaleController RptSaleCtl = new RptSaleController();
         DocumentPrintController DPrint = new DocumentPrintController();
         DataSet ds = null;
-
         DataTable dt = DPrint.SelectReportTitle(int.Parse(drpDistributor.SelectedValue.ToString()));
 
         if (dt.Rows.Count > 0)
         {
+
             DataControl dc = new DataControl();
-            ds = RptSaleCtl.SelectDocumentforPrint(int.Parse(drpDistributor.SelectedValue.ToString()), Convert.ToInt32(DrpArea.SelectedValue), int.Parse(DrpPrincipal.SelectedValue.ToString()),
+            ds = RptSaleCtl.SelectDocumentforPrintRooBack(int.Parse(drpDistributor.SelectedValue.ToString()), Convert.ToInt32(DrpArea.SelectedValue), int.Parse(DrpPrincipal.SelectedValue.ToString()),
                 DateTime.Parse(txtStartDate.Text + " 00:00:00"), DateTime.Parse(txtEndDate.Text + " 23:59:59"), int.Parse(DrpLedgerType.SelectedValue.ToString()), Constants.LongNullValue, p_CustomerType, Convert.ToInt32(DrpCustomer.SelectedValue), Convert.ToInt32(DrpRoute.SelectedValue), 0);
             ReportDocument CrpReport = new ReportDocument();
-            if (DrpLedgerType.SelectedValue == "2")
-            {
-                CrpReport = new CrpPrintDocumentDC();                
-            }
-            else if (DrpLedgerType.SelectedValue == "3")
-            {
-                CrpReport = new CrpPrintDocument();
-            }
-            else
-            {
-                CrpReport = new CrpPrintDocumentNew();
-            }
+            CrpReport = new CrpPrintDocumentNew();
             if (rbtSortOrder.SelectedIndex == 0)
             {
                 CrpReport.DataDefinition.SortFields[0].SortDirection = CrystalDecisions.Shared.SortDirection.AscendingOrder;
@@ -201,7 +190,7 @@ public partial class Forms_frmDocumentPrinting : System.Web.UI.Page
             {
                 CrpReport.SetParameterValue("COMPANY_NAME", "");
             }
-            CrpReport.SetParameterValue("RollbackLabel", "");
+            CrpReport.SetParameterValue("RollbackLabel", "Roll Backed");
             Session.Add("CrpReport", CrpReport);
             Session.Add("ReportType", p_ReportType);
             string url = "'Default.aspx'";

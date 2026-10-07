@@ -250,6 +250,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\CrpPrintDocumentNew.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrpPrintDocumentNew.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\CrpSaleProfit.cs">
       <DependentUpon>CrpSaleProfit.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -331,7 +337,7 @@
     <Compile Include="Reports\CrpPrintDocument2.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CrpPrintDocument2.rpt</DependentUpon>
+      <DependentUpon>CrpPrintDocumentNew.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\CrpPurchase.cs">
@@ -1186,9 +1192,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrpOrderBookerSheet.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\CrpPrintDocument2.rpt">
+    <EmbeddedResource Include="Reports\CrpPrintDocumentNew.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrpPrintDocument21.cs</LastGenOutput>
+      <LastGenOutput>CrpPrintDocumentNew.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\CrpPurchase.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -102,6 +102,66 @@ namespace SAMSBusinessLayer.Classes
             }
         }
 
+        public DataSet SelectDocumentforPrintRooBack(int p_Distributor_ID, int p_Areaid, int p_Principal_Id, DateTime FromDocNo, DateTime ToDocNo, int DocumentTypeId, long p_DOCUMENT_ID, int p_IS_REGISTERED, int p_CUSTOMER_ID, int p_Route_ID, int p_PRINTTYPE)
+        {
+            IDbConnection mConnection = null;
+            try
+            {
+                mConnection = ProviderFactory.GetConnection(Configuration.ConnectionString, EnumProviders.SQLClient);
+                mConnection.Open();
+                UspDocumentPrintingRollBack ObjPrint = new UspDocumentPrintingRollBack();
+                SAMSBusinessLayer.Reports.DsReport ds = new SAMSBusinessLayer.Reports.DsReport();
+                ObjPrint.Connection = mConnection;
+                ObjPrint.DISTRIBTOR_ID = p_Distributor_ID;
+                ObjPrint.AREA_ID = p_Areaid;
+                ObjPrint.PRINCIPAL_ID = p_Principal_Id;
+                ObjPrint.FROM_DATE = FromDocNo;
+                ObjPrint.TO_DATE = ToDocNo;
+                ObjPrint.TYPE_ID = DocumentTypeId;
+                ObjPrint.DOCUMENT_ID = p_DOCUMENT_ID;
+                ObjPrint.IS_REGISTERED = p_IS_REGISTERED;
+                ObjPrint.CUSTOMER_ID = p_CUSTOMER_ID;
+                ObjPrint.ROUTE_ID = p_Route_ID;
+                ObjPrint.PRINTTYPE = p_PRINTTYPE;
+
+                DataTable dt = ObjPrint.ExecuteTable();
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    ds.Tables["SALE_DOCUMENTPRINT"].ImportRow(dr);
+                }
+
+                uspPrintSALE_ORDER_PROMOTIONRollBack Promotion = new uspPrintSALE_ORDER_PROMOTIONRollBack();
+
+                Promotion.Connection = mConnection;
+                Promotion.DISTRIBTOR_ID = p_Distributor_ID;
+                Promotion.AREA_ID = p_Areaid;
+                Promotion.PRINCIPAL_ID = p_Principal_Id;
+                Promotion.FROM_DATE = FromDocNo;
+                Promotion.TO_DATE = ToDocNo;
+                Promotion.TYPE_ID = DocumentTypeId;
+                DataTable dtPro = Promotion.ExecuteTable();
+
+                foreach (DataRow dr in dtPro.Rows)
+                {
+                    ds.Tables["SALE_PROMOTIONPRINT"].ImportRow(dr);
+                }
+                return ds;
+            }
+            catch (Exception exp)
+            {
+                ExceptionPublisher.PublishException(exp);
+                return null;
+            }
+            finally
+            {
+                if (mConnection != null && mConnection.State == ConnectionState.Open)
+                {
+                    mConnection.Close();
+                }
+            }
+        }
+
         #region Added By Hazrat Ali
 
         /// <summary>
