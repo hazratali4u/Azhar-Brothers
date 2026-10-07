@@ -102,7 +102,7 @@ namespace SAMSBusinessLayer.Classes
             }
         }
 
-        public DataSet SelectDocumentforPrintRooBack(int p_Distributor_ID, int p_Areaid, int p_Principal_Id, DateTime FromDocNo, DateTime ToDocNo, int DocumentTypeId, long p_DOCUMENT_ID, int p_IS_REGISTERED, int p_CUSTOMER_ID, int p_Route_ID, int p_PRINTTYPE)
+        public DataSet SelectDocumentforPrintRooBack(int p_Distributor_ID, int p_Areaid, int p_Principal_Id, DateTime FromDocNo, DateTime ToDocNo, int DocumentTypeId, long p_DOCUMENT_ID, int p_IS_REGISTERED, int p_CUSTOMER_ID, int p_Route_ID, int p_PRINTTYPE,int p_OrderBookerID)
         {
             IDbConnection mConnection = null;
             try
@@ -123,6 +123,7 @@ namespace SAMSBusinessLayer.Classes
                 ObjPrint.CUSTOMER_ID = p_CUSTOMER_ID;
                 ObjPrint.ROUTE_ID = p_Route_ID;
                 ObjPrint.PRINTTYPE = p_PRINTTYPE;
+                ObjPrint.ORDERBOOKER_ID = p_OrderBookerID;
 
                 DataTable dt = ObjPrint.ExecuteTable();
 
@@ -140,6 +141,7 @@ namespace SAMSBusinessLayer.Classes
                 Promotion.FROM_DATE = FromDocNo;
                 Promotion.TO_DATE = ToDocNo;
                 Promotion.TYPE_ID = DocumentTypeId;
+                Promotion.ORDERBOOKER_ID = p_OrderBookerID;
                 DataTable dtPro = Promotion.ExecuteTable();
 
                 foreach (DataRow dr in dtPro.Rows)

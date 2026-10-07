@@ -49,6 +49,22 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td style="width: 1px" align="left">
+                                        </td>
+                                        <td style="height: 25px;" align="left">
+                                            <strong>
+                                                <asp:Label ID="Label7" runat="server" CssClass="lblbox" Text="Order Booker" Width="94px"></asp:Label></strong>
+                                        </td>
+                                        <td style="width: 1px" align="left">
+                                        </td>
+                                        <td style="width: 203px; height: 25px" align="left">
+                                            <asp:DropDownList ID="DrpOrderBooker" runat="server" CssClass="DropList" Width="209px">
+                                            </asp:DropDownList>
+                                        </td>
+                                        <td style="width: 1px; height: 25px" align="left">
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td align="left">
                                         </td>
                                         <td align="left">

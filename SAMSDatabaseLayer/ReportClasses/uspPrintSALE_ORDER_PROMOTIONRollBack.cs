@@ -17,7 +17,9 @@ namespace SAMSDatabaseLayer.Classes
 		private int m_AREA_ID;
 		private int m_PRINCIPAL_ID;
 		private int m_TYPE_ID;
-		private DateTime m_FROM_DATE;
+        private int m_ORDERBOOKER_ID;
+
+        private DateTime m_FROM_DATE;
 		private DateTime m_TO_DATE;
 		#endregion
 
@@ -74,8 +76,13 @@ namespace SAMSDatabaseLayer.Classes
 			}
 		}
 
+        public int ORDERBOOKER_ID
+        {
+            set { m_ORDERBOOKER_ID = value; }
+            get { return m_ORDERBOOKER_ID; }
+        }
 
-		public DateTime FROM_DATE
+        public DateTime FROM_DATE
 		{
 			set
 			{
@@ -328,8 +335,21 @@ namespace SAMSDatabaseLayer.Classes
 			}
 			pparams.Add(parameter);
 
+            parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            parameter.ParameterName = "@ORDERBOOKER_ID";
+            parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.Int);
+            if (m_ORDERBOOKER_ID == Constants.IntNullValue)
+            {
+                parameter.Value = DBNull.Value;
+            }
+            else
+            {
+                parameter.Value = m_ORDERBOOKER_ID;
+            }
+            pparams.Add(parameter);
 
-			parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+
+            parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
 			parameter.ParameterName = "@FROM_DATE" ; 
 			parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.DateTime);
 			if(m_FROM_DATE==Constants.DateNullValue)

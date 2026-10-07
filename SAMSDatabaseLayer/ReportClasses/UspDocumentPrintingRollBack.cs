@@ -25,12 +25,13 @@ namespace SAMSDatabaseLayer.Classes
         private int m_CUSTOMER_ID;
         private int m_ROUTE_ID;
         private int m_PRINTTYPE;
+        private int m_ORDERBOOKER_ID;
 
-		#endregion
+        #endregion
 
-		#region Public Properties
+        #region Public Properties
 
-		public int DISTRIBTOR_ID
+        public int DISTRIBTOR_ID
 		{
 			set
 			{
@@ -162,7 +163,14 @@ namespace SAMSDatabaseLayer.Classes
             }
         }
 
-		public IDbConnection  Connection
+        public int ORDERBOOKER_ID
+        {
+            set { m_ORDERBOOKER_ID = value; }
+            get { return m_ORDERBOOKER_ID; }
+        }
+
+
+        public IDbConnection  Connection
 		{
 			set
 			{
@@ -202,6 +210,7 @@ namespace SAMSDatabaseLayer.Classes
             m_CUSTOMER_ID = Constants.IntNullValue;
             m_ROUTE_ID = Constants.IntNullValue;
             m_PRINTTYPE = Constants.IntNullValue;
+            m_ORDERBOOKER_ID = Constants.IntNullValue;
         }
 		
         #endregion
@@ -486,6 +495,19 @@ namespace SAMSDatabaseLayer.Classes
             else
             {
                 parameter.Value = m_PRINTTYPE;
+            }
+            pparams.Add(parameter);
+
+            parameter = ProviderFactory.GetParameter(EnumProviders.SQLClient);
+            parameter.ParameterName = "@ORDERBOOKER_ID";
+            parameter.DbType = ProviderFactory.GetDBType(EnumProviders.SQLClient, EnumDBTypes.Int);
+            if (m_ORDERBOOKER_ID == Constants.IntNullValue)
+            {
+                parameter.Value = DBNull.Value;
+            }
+            else
+            {
+                parameter.Value = m_ORDERBOOKER_ID;
             }
             pparams.Add(parameter);
 

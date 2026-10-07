@@ -22,6 +22,7 @@ public partial class Forms_frmRolledbackDocumentPrinting : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             LoadDistributor();
+            LoadOrderBooker();
             LoadPrincipal();
             LoadSaleForce();
             LoadRoute();
@@ -53,7 +54,22 @@ public partial class Forms_frmRolledbackDocumentPrinting : System.Web.UI.Page
         DataTable dt = DController.SelectDistributorInfo(Constants.IntNullValue, int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()));
         clsWebFormUtil.FillDropDownList(drpDistributor, dt, 0, 2, true);
     }
-    
+
+    private void LoadOrderBooker()
+    {
+        DrpOrderBooker.Items.Clear();
+
+        if (drpDistributor.Items.Count > 0)
+        {
+
+            SaleForceController mDController = new SaleForceController();
+            DataTable m_dt = mDController.SelectSaleForceAssignedArea(Constants.SALES_FORCE_ORDERBOOKER, int.Parse(drpDistributor.SelectedValue.ToString()), Constants.IntNullValue, int.Parse(this.Session["CompanyId"].ToString()));
+            DrpOrderBooker.Items.Add(new ListItem("All", Constants.IntNullValue.ToString()));
+            clsWebFormUtil.FillDropDownList(this.DrpOrderBooker, m_dt, 0, 3);
+
+        }
+    }
+
     /// <summary>
     /// Loads Sale Forces To Sale Force Combo
     /// </summary>
@@ -108,6 +124,7 @@ public partial class Forms_frmRolledbackDocumentPrinting : System.Web.UI.Page
     /// <param name="e">EventArgs</param>
     protected void drpDistributor_SelectedIndexChanged(object sender, EventArgs e)
     {
+        LoadOrderBooker();
         LoadSaleForce();
         LoadRoute();
     }
@@ -169,7 +186,8 @@ public partial class Forms_frmRolledbackDocumentPrinting : System.Web.UI.Page
 
             DataControl dc = new DataControl();
             ds = RptSaleCtl.SelectDocumentforPrintRooBack(int.Parse(drpDistributor.SelectedValue.ToString()), Convert.ToInt32(DrpArea.SelectedValue), int.Parse(DrpPrincipal.SelectedValue.ToString()),
-                DateTime.Parse(txtStartDate.Text + " 00:00:00"), DateTime.Parse(txtEndDate.Text + " 23:59:59"), int.Parse(DrpLedgerType.SelectedValue.ToString()), Constants.LongNullValue, p_CustomerType, Convert.ToInt32(DrpCustomer.SelectedValue), Convert.ToInt32(DrpRoute.SelectedValue), 0);
+                DateTime.Parse(txtStartDate.Text + " 00:00:00"), DateTime.Parse(txtEndDate.Text + " 23:59:59"), int.Parse(DrpLedgerType.SelectedValue.ToString()), Constants.LongNullValue, p_CustomerType
+                , Convert.ToInt32(DrpCustomer.SelectedValue), Convert.ToInt32(DrpRoute.SelectedValue), 0,Convert.ToInt32(DrpOrderBooker.SelectedValue));
             ReportDocument CrpReport = new ReportDocument();
             CrpReport = new CrpPrintDocumentNew();
             if (rbtSortOrder.SelectedIndex == 0)
