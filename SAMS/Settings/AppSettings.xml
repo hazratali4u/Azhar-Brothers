@@ -1,25 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <AppSettings>
 
-  <!--<Server>FS-DEV-01</Server>
-  <DBName>samsw-azhar</DBName>
-  <DBUser>FS-DEV-01\Ijaz Jamil</DBUser>
-  <DBPassword>fast1234</DBPassword>
-  <DBAuthentication>Windows</DBAuthentication>-->
-
-
-  <Server>DESKTOP-9U8QBGM</Server>
-  <DBName>dbAzhar</DBName>
-  <DBUser>sa</DBUser>
-  <DBPassword>Fast1234</DBPassword>
+  <Server>samsl.faastdemo.com</Server>
+  <DBName>sams-azhar-test</DBName>
+  <DBUser>saqib</DBUser>
+  <DBPassword>myFast1234**</DBPassword>
   <DBAuthentication>MSDE</DBAuthentication>
-
-
-  <!--<Server>130.211.183.17</Server>
-  <DBName>SAMS-Azhar</DBName>
-  <DBUser>applications</DBUser>
-  <DBPassword>newFast!@#$</DBPassword>
-  <DBAuthentication>MSDE</DBAuthentication>-->
-
 
 </AppSettings>
