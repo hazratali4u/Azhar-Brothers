@@ -1,6 +1,0 @@
-D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSCommon\bin\Debug\SAMSCommon.dll
-D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSCommon\bin\Debug\SAMSCommon.pdb
-D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSCommon\bin\Debug\FTP.dll
-D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSCommon\obj\Debug\SAMSCommon.dll
-D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSCommon\obj\Debug\SAMSCommon.pdb
-D:\FS\Development\My Apps\Azhar Brothers\Application\SAMSCommon\obj\Debug\SAMSCommon.csprojResolveAssemblyReference.cache
